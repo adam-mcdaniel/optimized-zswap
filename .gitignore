@@ -1,0 +1,16 @@
+# CMake build directory
+build/
+
+# Generated build files
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+
+# Compiled output files (if any)
+*.o
+*.a
+*.exe
+
+# IDE-specific files (optional, based on your preference)
+.vscode/
