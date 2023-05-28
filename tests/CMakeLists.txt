@@ -8,7 +8,7 @@ foreach(TEST_SOURCE ${TEST_SOURCES})
     # Create the test executable target
     add_executable(${TEST_NAME} ${TEST_SOURCE})
     # Link the test executable with the library (if applicable)
-    target_link_libraries(${TEST_NAME} OptimizeZswapLib)
+    target_link_libraries(${TEST_NAME} optimize-zswap)
     # Register the test
     add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
 endforeach()

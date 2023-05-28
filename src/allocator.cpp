@@ -1,55 +1,37 @@
-#include <cstdlib>
-#include <new>
-#include <limits>
-#include <iostream>
-#include <vector>
- 
+#include "allocator.hpp"
+/*
 template<class T>
-struct Mallocator
+T* Mallocator<T>::allocate(std::size_t n)
 {
-    typedef T value_type;
- 
-    Mallocator () = default;
- 
-    template<class U>
-    constexpr Mallocator (const Mallocator <U>&) noexcept {}
- 
-    [[nodiscard]] T* allocate(std::size_t n)
+    if (n > std::numeric_limits<std::size_t>::max() / sizeof(T))
+        throw std::bad_array_new_length();
+
+    if (auto p = static_cast<T*>(std::malloc(n * sizeof(T))))
     {
-        if (n > std::numeric_limits<std::size_t>::max() / sizeof(T))
-            throw std::bad_array_new_length();
- 
-        if (auto p = static_cast<T*>(std::malloc(n * sizeof(T))))
-        {
-            report(p, n);
-            return p;
-        }
- 
-        throw std::bad_alloc();
+        report(p, n);
+        return p;
     }
- 
-    void deallocate(T* p, std::size_t n) noexcept
-    {
-        report(p, n, 0);
-        std::free(p);
-    }
-private:
-    void report(T* p, std::size_t n, bool alloc = true) const
-    {
-        std::cout << (alloc ? "Alloc: " : "Dealloc: ") << sizeof(T) * n
-                  << " bytes at " << std::hex << std::showbase
-                  << reinterpret_cast<void*>(p) << std::dec << '\n';
-    }
-};
- 
-template<class T, class U>
-bool operator==(const Mallocator <T>&, const Mallocator <U>&) { return true; }
- 
-template<class T, class U>
-bool operator!=(const Mallocator <T>&, const Mallocator <U>&) { return false; }
- 
-int main()
-{
-    std::vector<int, Mallocator<int>> v(8);
-    v.push_back(42);
+
+    throw std::bad_alloc();
 }
+
+template<class T>
+void Mallocator<T>::deallocate(T* p, std::size_t n) noexcept
+{
+    report(p, n, 0);
+    std::free(p);
+}
+
+
+template<class T>
+void Mallocator<T>::report(T* p, std::size_t n, bool alloc) const
+{
+    // boost::pfr::for_each_field(*p, [&](const auto& v) {
+    //     std::cout << v;
+    // });
+
+    std::cout << (alloc ? "Alloc: " : "Dealloc: ") << sizeof(T) * n
+                << " bytes at " << std::hex << std::showbase
+                << reinterpret_cast<void*>(p) << std::dec << '\n';
+}
+*/

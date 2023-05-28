@@ -8,5 +8,5 @@ foreach(APP_SOURCE ${APP_SOURCES})
     # Create the executable target
     add_executable(${APP_NAME} ${APP_SOURCE})
     # Link the executable with the library (if applicable)
-    target_link_libraries(${APP_NAME} OptimizeZswapLib)
+    target_link_libraries(${APP_NAME} PRIVATE optimize-zswap)
 endforeach()

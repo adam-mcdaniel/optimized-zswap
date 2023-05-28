@@ -11,6 +11,9 @@ cmake_install.cmake
 *.o
 *.a
 *.exe
+*.so
+pfr_non_boost-download/
+pfr_non_boost-src/
 
 # IDE-specific files (optional, based on your preference)
 .vscode/
