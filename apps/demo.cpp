@@ -4,7 +4,8 @@
 #include <iostream>
 #include <algorithm>
 #include <cmath>
-#include "allocator.hpp"
+#include "zsmalloc.hpp"
+#include "zsallocator.hpp"
 
 class Foo {
 public:
