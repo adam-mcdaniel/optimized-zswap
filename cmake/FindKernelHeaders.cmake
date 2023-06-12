@@ -11,7 +11,6 @@ find_path(KERNELHEADERS_DIR include/linux/zsmalloc.h
 )
 
 message(STATUS "Kernel headers: ${KERNELHEADERS_DIR}")
-message(STATUS "Kernel headers: ${KERNELHEADERS_DIR}")
 
 if (KERNELHEADERS_DIR)
 	set(KERNELHEADERS_INCLUDE_DIRS

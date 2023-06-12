@@ -7,6 +7,9 @@ foreach(APP_SOURCE ${APP_SOURCES})
     get_filename_component(APP_NAME ${APP_SOURCE} NAME_WE)
     # Create the executable target
     add_executable(${APP_NAME} ${APP_SOURCE})
+
+    target_include_directories(${APP_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
     # Link the executable with the library (if applicable)
-    target_link_libraries(${APP_NAME} PRIVATE optimize-zswap)
+    target_link_libraries(${APP_NAME} PUBLIC ${PROJECT_NAME})
+    # target_link_libraries(${APP_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/src/lib${PROJECT_NAME}.a)
 endforeach()

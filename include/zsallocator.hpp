@@ -158,12 +158,6 @@ static float IdealEntropy(int elements){
 }
 
 
-// template<typename T, typename U = typename std::enable_if<std::is_convertible<decltype(std::declval<T>() > std::declval<T>()), bool>::value>::type>
-// constexpr bool is_operator_greater_defined()
-// {
-//     return true;
-// }
-
 template<typename T>
 constexpr auto has_operator_less(int) -> decltype(std::declval<T>() < std::declval<T>(), std::true_type{});
 
@@ -190,9 +184,10 @@ void Mallocator<T>::report(T* p, std::size_t n, bool alloc) const
         // boost::pfr::for_each_field(*p, [&](const auto& v) {
         //     std::cout << v << '\n';
         // });
-        if (!alloc)
-            for (int i = 0; i < n; i++)
-                std::cout << boost::pfr::io_fields(*p) << '\n';
+        
+        // if (!alloc)
+        //     for (int i = 0; i < n; i++)
+        //         std::cout << boost::pfr::io_fields(*p) << '\n';
     }
 
     std::map<long unsigned int, TypeFeatures>::iterator features = type_features.find(typeid(*p).hash_code());
@@ -223,5 +218,5 @@ void Mallocator<T>::report(T* p, std::size_t n, bool alloc) const
         }
     }
 
-    std::cout << features->second << '\n';
+    // std::cout << features->second << '\n';
 }
