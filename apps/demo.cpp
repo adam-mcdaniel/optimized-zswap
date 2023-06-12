@@ -4,7 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cmath>
-#include "zsmalloc.hpp"
+#include "zsmalloc.h"
 #include "zsallocator.hpp"
 
 class Foo {
@@ -78,7 +78,8 @@ int main() {
     }
 
 
-    std::cout << is_type_reflectable<Foo>() << std::endl;
-    std::cout << is_type_reflectable<Bar>() << std::endl;
-    std::cout << is_type_reflectable<Baz>() << std::endl;
+    // std::cout << is_type_reflectable<Foo>() << std::endl;
+    // std::cout << is_type_reflectable<Bar>() << std::endl;
+    // std::cout << is_type_reflectable<Baz>() << std::endl;
+    std::cout << zsmalloc_alloc(5) << std::endl;
 }

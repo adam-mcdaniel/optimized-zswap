@@ -1,0 +1,1 @@
+cmd_/home/adam/Documentos/c++/optimized-zswap/Module.symvers :=  scripts/mod/modpost       -o /home/adam/Documentos/c++/optimized-zswap/Module.symvers -T /home/adam/Documentos/c++/optimized-zswap/modules.order -i Module.symvers -e 
