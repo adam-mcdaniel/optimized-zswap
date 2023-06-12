@@ -16,6 +16,7 @@
 #include "pfr/traits.hpp"
 #include <zlib.h>
 
+
 // This type stores feature information about each type.
 // It is used to help determine if a type is trivially compressible.
 // The allocator will use this information to determine if it should
@@ -246,5 +247,13 @@ void Mallocator<T>::report(T* p, std::size_t n, bool alloc) const
         printf("Compressed size: %lu bytes\n", compressed_size);
     } else {
         printf("Compression failed. Error code: %d\n", result);
+    }
+
+
+
+    std::map<long unsigned int, TypeFeatures>::iterator features = type_features.find(typeid(*p).hash_code());
+    if (features == type_features.end()) {
+        type_features[typeid(*p).hash_code()] = TypeFeatures(typeid(*p));
+        features = type_features.find(typeid(*p).hash_code());
     }
 }

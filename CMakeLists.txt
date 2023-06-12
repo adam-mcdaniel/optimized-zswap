@@ -3,7 +3,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
 # Set project name and language
 project(OptimizeZswap CXX)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 
 find_package(KernelHeaders REQUIRED)
 if (NOT KERNELHEADERS_DIR)
@@ -15,6 +15,7 @@ message(STATUS "Kernel source directory: ${KERNELHEADERS_INCLUDE_DIRS}")
 # target_sources(optimize-zswap PUBLIC ${KERNELHEADERS_INCLUDE_DIRS}/linux/zsmalloc.h)
 find_package(ZLIB REQUIRED)
 include_directories(${ZLIB_INCLUDE_DIRS})
+link_directories(/usr/include/gnu/)
 link_directories(${ZLIB_LIBRARY_DIRS})
 link_libraries(${ZLIB_LIBRARIES})
 
