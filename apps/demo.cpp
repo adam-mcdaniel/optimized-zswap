@@ -66,9 +66,9 @@ int main() {
         v.push_back(Foo());
     std::vector<Foo, Mallocator<Foo>> v2(v.begin(), v.end());
 
-    std::vector<Bar, Mallocator<Bar>> v3;
-    for (int i = 0; i < 100; ++i)
-        v3.push_back(Bar());
+    // std::vector<Bar, Mallocator<Bar>> v3;
+    // for (int i = 0; i < 100; ++i)
+    //     v3.push_back(Bar());
 
     std::vector<Baz, Mallocator<Baz>> v4;
     for (int i = 0; i < 100; ++i) {
