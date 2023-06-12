@@ -6,3 +6,7 @@ target_include_directories(optimize-zswap PUBLIC include)
 target_include_directories(optimize-zswap PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(optimize-zswap PUBLIC ${Boost_LIBRARIES})
 # target_sources(optimize-zswap PUBLIC ${KERNELHEADERS_DIR}/include/linux/zsmalloc.h)
+
+find_package(ZLIB REQUIRED)
+target_include_directories(optimize-zswap PUBLIC ${ZLIB_INCLUDE_DIRS})
+target_link_libraries(optimize-zswap PUBLIC ${ZLIB_LIBRARIES})

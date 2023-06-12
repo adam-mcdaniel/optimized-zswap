@@ -15,5 +15,8 @@ cmake_install.cmake
 pfr_non_boost-download/
 pfr_non_boost-src/
 
+# Kernel module build directory (if any)
+linux/
+
 # IDE-specific files (optional, based on your preference)
 .vscode/

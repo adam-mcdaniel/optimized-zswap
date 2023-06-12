@@ -14,7 +14,7 @@
 #include <boost/pfr.hpp>
 #include <boost/pfr/core.hpp>
 #include "pfr/traits.hpp"
-
+#include <zlib.h>
 
 // This type stores feature information about each type.
 // It is used to help determine if a type is trivially compressible.
@@ -116,7 +116,7 @@ void Mallocator<T>::deallocate(T* p, std::size_t n) noexcept
 
 
 template <typename T>
-static float ShannonEntropy(T data[],int elements){
+static float ShannonEntropy(T data[],int elements) {
     float entropy=0;
     std::map<T, long> counts;
     typename std::map<T, long>::iterator it;
@@ -185,6 +185,10 @@ constexpr bool is_type_reflectable()
 template<class T>
 void Mallocator<T>::report(T* p, std::size_t n, bool alloc) const
 {
+    /*
+    This code implements reporting for data that can be reflected using boost::pfr
+    */
+    /*
     if constexpr (is_type_reflectable<T>()) {
         // std::cout << typeid(*p).name() << " is reflectable\n";
         // boost::pfr::for_each_field(*p, [&](const auto& v) {
@@ -224,4 +228,23 @@ void Mallocator<T>::report(T* p, std::size_t n, bool alloc) const
     }
 
     std::cout << features->second << '\n';
+    */
+
+
+    /*
+    Test the compressibility of the bytes in the deallocated memory.    
+    */
+    const char* input_data = (const char*)p;
+    const size_t input_size = sizeof(T) * n;
+    uLong compressed_size = compressBound(input_size);  // Get an upper bound for the compressed size
+    Bytef* compressed_data = (Bytef*)malloc(compressed_size);
+
+    int result = compress2(compressed_data, &compressed_size, (const Bytef*)input_data, input_size, Z_BEST_COMPRESSION);
+    if (result == Z_OK) {
+        printf("Compression successful!\n");
+        printf("Original size: %lu bytes\n", input_size);
+        printf("Compressed size: %lu bytes\n", compressed_size);
+    } else {
+        printf("Compression failed. Error code: %d\n", result);
+    }
 }

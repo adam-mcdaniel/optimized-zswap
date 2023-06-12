@@ -13,6 +13,10 @@ message(STATUS "Kernel source directory: ${KERNELHEADERS_INCLUDE_DIRS}")
 # include_directories(${KERNELHEADERS_DIR}/include)
 
 # target_sources(optimize-zswap PUBLIC ${KERNELHEADERS_INCLUDE_DIRS}/linux/zsmalloc.h)
+find_package(ZLIB REQUIRED)
+include_directories(${ZLIB_INCLUDE_DIRS})
+link_directories(${ZLIB_LIBRARY_DIRS})
+link_libraries(${ZLIB_LIBRARIES})
 
 find_package(Boost 1.78 REQUIRED COMPONENTS system)
 set(Boost_COMPONENTS system)
